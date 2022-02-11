@@ -17,3 +17,5 @@ instructions:
 Additional information
 - editing notes function will bolden, italic, underline everything in the editing text 
 - currently any changes made will be made to the document installed locally 
+
+done by kim, adam and zack <3
