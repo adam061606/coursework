@@ -1,7 +1,9 @@
-# import openpyxl and tkinter modules
+# adam wrote all of this
+# import tkinter modules and easygui
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
+import tkinter.messagebox
 
 # globally declare wb and sheet variable
 root = Tk()
@@ -9,30 +11,45 @@ root = Tk()
 # setting the windows size
 root.geometry("400x200")
 # setting the app name
-root.title("coursework")
+root.title("register")
 
 # declaring string variable
 # for storing name and password
 name_var=tk.StringVar()
 passw_var=tk.StringVar()
- 
+username_available = False
   
 # a function that will get the name and password and store them in a text file
 def createAccount():
- 
     name=name_var.get()
     password=passw_var.get()
-     
-    print("The name is : " + name)
-    print("The password is : " + password)
 
-    file1 = open("coursework.txt", "w")
-    file1.write("user:" + name + "  ")
-    file1.write("password:" + password)
-    file1.close()
+    file0 = open("account_username.txt", "r")
+    usernames = file0.readlines()
+    file0.close()
     
-    name_var.set("")
-    passw_var.set("")
+    for i in usernames :
+        if name == i:
+            #tkMessageBox.showinfo(title="error", message="username taken, please sign in instead")
+            username_available == False
+            name_var.set("")
+            passw_var.set("")
+            root.destroy()
+            import sign_in_page
+            break
+        else : username_available = True
+    if username_available == True:
+        file1 = open("account_username.txt", "a")
+        file1.write("user:" + name + "\n")
+        file1.close()
+
+        file2 = open("account_password.txt", "a")
+        file2.write("password:" + password + "\n")
+        file2.close()
+        print("The name is : " + name)
+        print("The password is : " + password)
+        name_var.set("")
+        passw_var.set("")
     
 # a function that will get the name and password and store them in a text file
 def signIn():

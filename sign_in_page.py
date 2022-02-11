@@ -1,7 +1,9 @@
-# import openpyxl and tkinter modules
+# adam wrote all of this
+# import tkinter modules
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
+import tkinter.messagebox
 
 # globally declare wb and sheet variable
 root = Tk()
@@ -19,11 +21,52 @@ passw_sign=tk.StringVar()
 
 # a function that will get the name and password and store them in a text file
 def signIn():
-    fin = open("coursework.txt", "r")
-    contents = fin.readlines()
-    print(contents)
-    fin.close()
-    contents.find(name_entry_sign,4)
+    name=name_sign.get()
+    password=passw_sign.get()
+    
+    file1 = open("account_username.txt", "r")
+    usernames = file1.readlines()
+    #print(usernames)
+    file1.close()
+    username_list =[]
+    for i in usernames:
+        i = i.strip()
+        i = i[5:]
+        username_list.append(i)
+    print(username_list)
+
+    file2 = open("account_password.txt", "r")
+    passwords = file2.readlines()
+    #print(passwords)
+    file2.close()
+    password_list =[]
+    for i in passwords:
+        i = i.strip()
+        i = i[9:]
+        password_list.append(i)
+    print(password_list)
+
+    print(name)
+    print(password)
+
+
+    for i in username_list:
+        if name == i:
+            a = username_list.index(name)
+            if password == password_list[a]:
+                root.destroy()
+                import main_page
+                break
+            else :
+                #tkMessageBox.showinfo(title="error", message="wrong password")
+                print ("password is wrong")
+                break
+        else :
+            #tkMessageBox.showinfo(title="error", message="username not found, register a new account.")
+            print ("username not found")
+            break
+            #root.destroy()
+            #import register_page
 
 def reg():
     root.destroy()
