@@ -5,13 +5,15 @@ prerequisites:
 - python installed
 - openpyxl library installed
 - excel library installed (this will function as database)
-- a text file for sign in page 
 
 instructions:
 - input command $ pip3 install openpyxl
-- sign in page 
-- input username and password
-- click once (as code will crash if spammed)
+- if terminal installs openpyxl but it still does not work then you may open the code in pycharm to download the openpyxl package and then use idle again :)
+- open register page
+- register username and password
+- sign in using username and password
+- start using the app :)
+
 Additional information
-- editing notes function will bolden, italic, underline everything in the editing text (due to time constraints
-- currently any changes made will be made to the document installed locally (multiple users not supported yet
+- editing notes function will bolden, italic, underline everything in the editing text 
+- currently any changes made will be made to the document installed locally 
