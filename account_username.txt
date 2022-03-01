@@ -6,3 +6,4 @@ user:nice
 user:lolol
 user:123456
 user:this is so fun
+user:red

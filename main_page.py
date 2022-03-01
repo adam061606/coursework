@@ -534,10 +534,15 @@ def pub1(): #redundant
 for i in range (2,row_count+1): #done by adam
     a = "A" + str(i)
     d = "D" + str(i)
+    f = "F" + str(i)
     print(a)
+    def open_pub():
+        text_edit.delete(1.0, tk.END)
+        text_edit.insert(tk.END, ws[f].value)
     if ws[d].value == "public":
         pub_1 = ttk.Button(root, text=ws[a].value, command=pub1)
         pub_1.grid(row=i+1, column=0)
+        pub_1.config(command=open_pub)
 
 #normal buttons
 button_open = tk.Button(frame_button, text = "VIEW A NOTE", command=opening_file)
@@ -570,7 +575,7 @@ dropL = ttk.OptionMenu( frame_button , clickedL , *level_options )
 dropL.grid(row=5, column=0, padx=5, pady=5)
 
 #for filter #done by zack
-def filternote(): #ine 638, the clickedL is being read as PY_VAR1 , so we have to debug, most likely clicked also got problem
+def filternote(): #line 638, the clickedL is being read as PY_VAR1 , so we have to debug, most likely clicked also got problem
     filtered = tk.Tk()
     filtered.wm_title('filtered notes')
     for i in range(2,row_count+1):
@@ -594,25 +599,45 @@ button.grid(row=6, column =0, padx=5, pady=5)
 #############################################
 #liked notes
 
-        
+
+ 
 def like_n(): #done by zack
+    global liked_i
     liked = tk.Tk()
     liked.wm_title('my liked notes')
     liked.geometry('700x700')
+    arrrrrayyyyy = []
+    count = 0
     for i in range(2,row_count+1):
         a = "A" + str(i)
         e = "E" + str(i)
         f = "F" + str(i)
-        def open_liked_note():
-            text_edit.delete(1.0, tk.END)
-            text_edit.insert(tk.END, ws[f].value)
         if ws[e].value == "liked": #then display something idk
-            print("show liked note")
-        liked_i = ttk.Button(liked, text = ws[a].value, command=open_liked_note)
-        liked_i.grid(row=i, column=0, padx=10, pady=10)
-        liked_i.config(command=open_liked_note)
-    
+            #print("show liked note")
+            arrrrrayyyyy.append(ws[a].value)
+            #print(arrrrrayyyyy)
+    print(arrrrrayyyyy)
+    for u in arrrrrayyyyy:
+        #arr.append(u)
+        count += 1
+        def lol():
+            open_liked_note(u)
+        liked_i = ttk.Button(liked, text = u, command=lol)
+        liked_i.grid(row=count, column=0, padx=10, pady=10)
+#       liked_i.config(command=open_liked_note)
 
+def open_liked_note(my_text):
+        global liked_i
+        #my_text=
+#       #my_text = liked_i.cget('text')
+        print(my_text)
+        for k in range (2,row_count+1):
+            p = "A" + str(k)
+            if my_text == ws[p].value:
+                cell_value = ws.cell(row=k, column=6)
+                print(cell_value.value)
+                text_edit.delete(1.0, tk.END)
+                text_edit.insert(tk.END, cell_value.value) 
 
 button_liked.config(command=like_n)
 
